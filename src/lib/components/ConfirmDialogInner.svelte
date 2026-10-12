@@ -13,7 +13,19 @@
 </script>
 
 <div class="fixed inset-0 z-[90] grid place-items-center p-4" role="dialog" aria-modal="true" aria-label={title}>
-	<div class="absolute inset-0 bg-black/40 backdrop-blur-sm fade-in" onclick={onCancel}></div>
+	<div
+		class="absolute inset-0 bg-black/40 backdrop-blur-sm fade-in"
+		role="button"
+		tabindex="-1"
+		aria-label="Close dialog"
+		onclick={onCancel}
+		onkeydown={(e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				onCancel();
+			}
+		}}
+	></div>
 	<div class="relative card shadow-l2 p-5 w-full max-w-sm fade-in">
 		<h2 class="text-[15px] font-semibold text-ink">{title}</h2>
 		{#if message}

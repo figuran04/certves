@@ -60,7 +60,7 @@
 	let renameValue = $state('');
 	let deleteTarget = $state(null);
 
-	let importInput;
+	let importInput = $state(null);
 
 	function showMessage(text, type = 'info') {
 		message = { text, type };

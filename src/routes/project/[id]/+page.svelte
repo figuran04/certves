@@ -1495,7 +1495,7 @@ class="flex items-center justify-start gap-2.5 px-3 py-2.5 rounded-xl text-[13px
 
 			{#if activeTab === "templates"}
 				<div
-					class="absolute bottom-3 left-0 right-0 flex justify-center pointer-events-none z-20 px-3"
+					class="fixed bottom-3 left-0 right-0 flex justify-center pointer-events-none z-20 px-3"
 				>
 					<div
 						class="pointer-events-auto shadow-l2 rounded-2xl overflow-hidden max-w-full p-1"
