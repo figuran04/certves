@@ -740,9 +740,14 @@
 
 	let renamingFieldId = $state(null);
 	let fieldRenameValue = $state("");
+	let fieldRenameInput = $state(null);
 	let openFieldMenu = $state(null);
 	let deleteFieldTarget = $state(null);
 	let fieldMenuPos = $state({ left: 0, top: 0 });
+
+	$effect(() => {
+		if (renamingFieldId) fieldRenameInput?.focus();
+	});
 
 	function startFieldRename(f) {
 		fieldRenameValue = f.key;
@@ -974,6 +979,7 @@
 </script>
 
 <div
+	role="presentation"
 	class="h-screen flex flex-col overflow-hidden"
 	onclick={onWorkspaceDeselect}
 >
@@ -1230,7 +1236,7 @@ class="flex items-center justify-start gap-2.5 px-3 py-2.5 rounded-xl text-[13px
 									{#if renamingFieldId === f.id}
 										<div class="px-1 py-0.5">
 											<input
-												autofocus
+												bind:this={fieldRenameInput}
 												type="text"
 												bind:value={fieldRenameValue}
 												placeholder={f.key}

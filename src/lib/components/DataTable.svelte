@@ -15,7 +15,7 @@
 
 	let editingCell = $state(null);
 	let editTarget = $state(null);
-	let editingInput;
+	let editingInput = $state(null);
 	let editingCol = $state(null);
 	let editColName = $state('');
 	let newColName = $state('');

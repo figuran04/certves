@@ -175,27 +175,14 @@
 		{:else}
 			<ul role="list" aria-label="Pages" class="flex-1 min-w-0 overflow-x-auto flex gap-2 p-1.5">
 				{#each templates as t, i (t.id)}
-					<li
-						role="button"
-						tabindex="0"
-						data-template-index={i}
+<li
+					data-template-index={i}
 						draggable="true"
 						class="group relative shrink-0 rounded-lg p-1 border transition-all cursor-pointer select-none
 							{dragOverIndex === i ? 'border-accent/70 bg-panel-hi scale-[1.03]' : ''}
 							{dragIndex === i ? 'opacity-40' : ''}
 							{activeTemplateId === t.id && dragOverIndex !== i ? 'border-transparent ring-2 ring-inset ring-accent/70 bg-panel-hi' : ''}
 							{activeTemplateId !== t.id && dragOverIndex !== i ? 'border-line hover:border-line-hi bg-panel' : ''}"
-						onclick={() => {
-							activeTemplateId = t.id;
-							onSelect(t.id);
-							menuId = null;
-						}}
-						onkeydown={(e) => {
-							if (e.key === 'Enter' || e.key === ' ') {
-								activeTemplateId = t.id;
-								onSelect(t.id);
-							}
-						}}
 						ondragstart={(e) => handleDragStart(e, i)}
 						ondragover={(e) => handleDragOver(e, i)}
 						ondragend={handleDragEnd}
@@ -206,7 +193,22 @@
 							touchDragIndex = i;
 						}}
 					>
-						<div class="relative w-24 sm:w-28 aspect-[4/3] overflow-hidden rounded-[5px]">
+						<div
+							role="button"
+							tabindex="0"
+							class="relative w-24 sm:w-28 aspect-[4/3] overflow-hidden rounded-[5px]"
+							onclick={() => {
+								activeTemplateId = t.id;
+								onSelect(t.id);
+								menuId = null;
+							}}
+							onkeydown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									activeTemplateId = t.id;
+									onSelect(t.id);
+								}
+							}}
+						>
 							<button
 								onmousedown={(e) => e.stopPropagation()}
 								onpointerdown={(e) => e.stopPropagation()}
